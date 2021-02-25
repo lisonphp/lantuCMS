@@ -1,0 +1,43 @@
+{template "content","header"}
+<article>
+    <section class="cases-main set-bg1">
+        <div class="ys-list">
+                {pc:get sql="select url,thumb,title,facenews,appmarket,getusers,newstop,newstoptxt,mainkeywordstop,mainkeywordstxt from lt_successcase where catid=$catid and status=99 order by id desc" num="6" return="infopage" page="$page"}
+                {loop $infopage $r}
+            <a class="wow flip" href="{$r[url]}">
+                <div class="advantage-img"><img src="{$r[thumb]}" alt="{str_cut($r[title],'60','...')}" srcset=""></div>
+                <div class="advantage-txt">
+                    <header class="advantage-txt-hd">
+                        <h3 class="advantage-txt-ti">{$r[title]}</h3>
+                        <p class="advantage-txt-ms"><span>{$r[facenews]}</span><span>{$r[appmarket]}</span><span>{$r[getusers]}</span></p>
+                    </header>
+                    <div class="advantage-txt-ft">
+                        <div class="item">
+                            <p>TOP{$r[newstop]}</p>
+                            <p>{$r[newstoptxt]}</p>
+                        </div>
+                        <div class="item">
+                            <p>TOP{$r[mainkeywordstop]}</p>
+                            <p>{$r[mainkeywordstxt]}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+                {/loop}
+                {/pc}
+        </div>
+        <!-- <a class="ani btn btn-default wow slideInUp" href=""><span>更多动态</span></a> -->
+        <div class="pages_02 pages_01_ul page">
+            <div class="pages_01">{$pages}</div>
+        </div>
+    </section>
+    <!-- 焦点图 -->
+    <section class="focus-map" style="background: url(/statics/pc/image/al-2.jpg) no-repeat center;">
+        <div class="focus-bx">
+            <p>选择商数，开启您的专属服务开启合作  精准获客</p>
+        </div>
+    </section>
+    <!-- 留言表单 -->
+{template "content","messbook"}
+</article>    
+{template "content","footer"}

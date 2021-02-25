@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta name="baidu-site-verification" content="iu78mdbIAL" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {if $catid==''}
+        {pc:get sql="select setting from lt_category where catid=35"}
+            {php $setting = string2array($data[0]['setting'])}
+            <title>{$setting[meta_title]}</title>
+            <meta name="keywords" content="{$setting[meta_keywords]}"/>
+            <meta name="description" content="{$setting[meta_description]}"/>            
+        {/pc}
+    
+    {else}
+        {pc:get sql="select setting from lt_category where catid=$catid"}
+            {php $setting = string2array($data[0]['setting'])}
+            {if $id}
+            {php $strtitle=substr($SEO[title],0,strlen($SEO[title])-2);}
+            <title>{$strtitle}</title>
+            <meta name="description" content="{$SEO[description]}"/>
+            <meta name="keywords" content="{$SEO[keyword]}"/>  
+            {else}
+            <title>{$setting[meta_title]}</title>
+            <meta name="keywords" content="{$setting[meta_keywords]}"/>
+            <meta name="description" content="{$setting[meta_description]}"/>    
+            {/if}   
+        {/pc}
+    {/if}
+    <link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/Swiper/4.5.0/css/swiper.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/jquery-nice-select/1.1.0/css/nice-select.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/statics/pc/css/style.css">
+
+</head>
+<style>
+.pages_01 li a {
+    color: #333333;
+}
+.pages_01_ul {
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center;
+    clear: both;
+}
+.pages_01 a {
+    border: 1px solid #e3e3e3;
+    color: #333;
+    display: inline-block;
+    padding: 0 10px;
+}
+.pages_01 li {
+    list-style: none;
+    display: inline;
+    padding: 3px 10px;
+}
+.gy {
+    width: 100%;
+    background: #FFF;
+    float: left;
+    margin-top: 2em;
+}
+</style>
+
+<body>
+<header id="header">
+    <div class="header_nav">
+        <div class="container">
+            <div class="logo"><a href="/"><img src="/statics/pc/image/logo.png" alt="" srcset=""></a></div>
+            <ul class="one_nav">
+                
+                {pc:content action="category" order="listorder ASC" catid="0"}
+                {loop $data $k $r}
+                <li class="one_list">
+                    {if $r[catid] ==27 || $r[catid] ==34}
+                    <a class="one_list_a" href="{$r[url]}">{$r[catname]}</a>
+                    {else}
+                    <a class="one_list_a one_list_a_x" href="javascript:void(0)">{$r[catname]}</a>
+                    {/if}
+                    <ul class="two_nav">
+                        {pc:content action="category" catid="$r[catid]" order="listorder ASC" return="data2"}
+                        {loop $data2 $e $v}
+                        {if $v[catid] ==43 || $v[catid] ==44}
+                        <li class="two_list">
+                            <a class="two_list_a two_list_a_ti" href="javascript:void(0)">{$v[catname]}</a>
+                            {pc:content action="category" catid="$v[catid]" order="listorder ASC" return="data3"}
+                            {loop $data3 $h}
+                                <a class="two_list_a" href="{$h[url]}">{$h[catname]}</a>
+                            {/loop}
+                            {/pc}
+                        </li>
+                        {else}
+                        <li class="two_list two_list_tz">
+                            <a class="two_list_a two_list_a_ti" href="{if $v[catid]==53}{$CATEGORYS[65][url]}{elseif $v[catid]==52}{$CATEGORYS[67][url]}{else}{$v[url]}{/if}">{$v[catname]}</a>
+                            {pc:content action="category" catid="$v[catid]" order="listorder ASC" return="data3"}
+                            {loop $data3 $h}
+                                <a class="two_list_a" href="{$h[url]}">{$h[catname]}</a>
+                            {/loop}
+                            {/pc}
+                        </li>
+                        {/if}
+                        {/loop}
+                        {/pc}
+                    </ul>
+                </li>
+                {/loop}
+                {/pc}
+            </ul>
+            <div class="hamburger-box"><div class="hamburger-inner"></div></div>
+        </div>
+    </div>
+    {if $catid == '' }
+    {if $CATEGORYS[41]['ismenu']}
+    <div class="banner home_banner">
+        <img class="gun" src="/statics/pc/image/gun.gif" alt="" srcset="">
+        <div class="swiper-container swiper-container1">
+            <div class="swiper-wrapper">
+                    {pc:get sql="select links,thumb,title,futitle from lt_picture where status=99 order by id desc" num="3" return="infopage"}
+                    {loop $infopage $r}
+                <div class="swiper-slide" style="background:url('{$r[thumb]}') no-repeat center;">
+                    <div class="tips">
+                        <div class="ani home-banner-slogan" swiper-animate-effect="fadeInUp" swiper-animate-duration="1.5s" swiper-animate-delay="0s" >{$r[title]}</div>
+                        <div class="ani home-banner-slogan" swiper-animate-effect="fadeInUp" swiper-animate-duration="1.5s" swiper-animate-delay="0.2s">{$r[futitle]}</div>
+                        <a class="ani btn btn-default" swiper-animate-effect="fadeInUp" swiper-animate-duration="1.5s" swiper-animate-delay="0.4s" href="{if $r[links]}{$r[links]}{else}javascript:;{/if}"><span>我要合作</span></a>
+                    </div>
+                </div>
+                {/loop}
+                {/pc}
+            </div>
+            <div class="swiper-pagination swiper-pagination1"></div>
+        </div>
+    </div>
+    {/if}
+    {else}
+        {php $lisoncatids=array(56,57,58,59,60,53,65,66,52,34);}
+        {if in_array($catid,$lisoncatids)}
+        <div class="banner">
+        {else} 
+        <div class="banner c_banner">
+        {/if}
+            <div class="swiper-slide" style='background:url("{$CATEGORYS[$catid]['image']}") no-repeat center;'>
+                <div class="tips tips1">
+                    <div class="home-banner-slogan wow fadeInUp" data-wow-duration="1.5s" >{$CATEGORYS[$catid]['description']}</div>
+                    <div class="home-banner-slogan wow fadeInUp" data-wow-duration="1.5s" >{$CATEGORYS[$catid]['subtitle']}</div>
+                    <div class="home-banner-slogan wow fadeInUp" data-wow-duration="1.5s" >{$CATEGORYS[$catid]['descriptions']}</div>
+                </div>
+            </div>
+        </div>
+    {/if}
+</header>
+
+

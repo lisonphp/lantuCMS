@@ -1,0 +1,74 @@
+{template "content","header"}
+<article>
+        <!-- 资源 -->
+        <section class="resources">
+            <div class="container">
+                {if $CATEGORYS[48]['ismenu']}
+                {pc:get sql="select content from lt_page where catid=48" return="infopage"}
+                {loop $infopage $r}
+                {$r[content]}
+                {/loop}
+                {/pc}
+                {/if}
+                <a class="ani btn btn-default wow fadeInUp" href="/contact/"><span>我要合作</span></a>
+            </div>
+        </section>
+        <!-- 优势 -->
+        <section class="advantage">
+            <div class="container">
+                {if $CATEGORYS[18]['ismenu']}
+                {pc:get sql="select content from lt_page where catid=18" return="infopage"}
+                {loop $infopage $r}
+                {$r[content]}
+                {/loop}
+                {/pc}
+                {/if}
+            </div>
+        </section>
+        <!-- 案例 -->
+        <section class="case">
+            <div class="container">
+                {if $CATEGORYS[36]['ismenu']}
+                {pc:get sql="select content from lt_page where catid=36" return="infopage"}
+                {loop $infopage $r}
+                {$r[content]}
+                {/loop}
+                {/pc}
+                {/if}
+            </div>
+        </section>
+        <!-- 动态 -->
+        <section class="dynamic">
+            <div class="container">
+                <h3 class="sec-title wow fadeInUp">最新动态</h3>
+                <div class="ys-list wow fadeInUp">
+                    <div class="swiper-container swiper-container-dt">
+                        <div class="swiper-wrapper">
+                            {pc:get sql="select url,thumb,title from lt_news where status=99 order by id desc" num="9" return="infopage" page="$page"}
+                            {loop $infopage $r}
+                            <div class="swiper-slide">
+                                <a class="ys-list-it" href="{$r[url]}">
+                                    <div class="advantage-img"><img src="{$r[thumb]}" alt="{str_cut($r[title],'60','...')}" srcset=""></div>
+                                    <div class="advantage-txt">{str_cut($r[title],'50','...')}</div>
+                                </a>
+                            </div>
+                            {/loop}
+                            {/pc}
+                        </div>
+                    </div>
+                    <div class="swiper-pagination swiper-pagination-dt"></div>
+                    <a class="ani btn btn-default" swiper-animate-effect="fadeInUp" swiper-animate-duration="1.5s" swiper-animate-delay="0.4s" href="{$CATEGORYS[65]['url']}"><span>更多动态</span></a>
+                </div>
+            </div>
+        </section>
+        <!-- 焦点图 -->
+        <section class="focus-map" style="background: url(/statics/pc/image/jdt-bg.jpg) no-repeat center;">
+            <div class="focus-bx">
+                <p>开启合作  精准获客</p>
+            </div>
+        </section>
+        <!-- 留言表单 -->
+        {template "content","messbook"}
+    </article>
+
+{template "content","footer"}

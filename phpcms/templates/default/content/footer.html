@@ -1,0 +1,92 @@
+<footer id="footer">
+    <div class="container">
+        <div class="logo">
+            {pc:block pos="downlogo"}{/pc}
+            {pc:block pos="rphone"}{/pc}
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="/">首页</a></li>
+            </ul>
+            {pc:content action="category" order="listorder ASC" catid="0"}
+            {loop $data $k $r}
+            <ul>
+                <li><a href="{if $r[catid]==39}{$CATEGORYS[56]['url']}{elseif $r[catid]==28}{$CATEGORYS[45]['url']}{elseif $r[catid]==30}{$CATEGORYS[51]['url']}{else}{$r[url]}{/if}">{$r[catname]}</a></li>
+                {pc:content action="category" catid="$r[catid]" order="listorder ASC" return="data2"}
+                {loop $data2 $e $v}
+                    <li><a href="{if $v[catid]==43}{$CATEGORYS[56]['url']}{elseif $v[catid]==44}{$CATEGORYS[58]['url']}{elseif $v[catid]==53}{$CATEGORYS[65]['url']}{else}{$v[url]}{/if}">{$v[catname]}</a></li>
+                {/loop}
+                {/pc}
+            </ul>
+            {/loop}
+            {/pc}
+        </div>
+        <div class="er">{pc:block pos="ercode"}{/pc}</div>
+    </div>
+    <p class="tips">{pc:block pos="copyright"}{/pc}</p>
+</footer>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+<script src="https://cdn.bootcss.com/Swiper/4.5.0/js/swiper.min.js"></script>
+<script src="/statics/pc/js/swiper.animate1.0.3.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+<script src="/statics/pc/js/style.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container1', {
+        loop : true,
+        autoplay:true,
+        pagination: {
+            el: '.swiper-pagination1',
+        },
+        on:{
+            init: function(){
+                swiperAnimateCache(this); //隐藏动画元素 
+                swiperAnimate(this); //初始化完成开始动画
+            }, 
+            slideChangeTransitionEnd: function(){ 
+                swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+            } 
+        }
+    })
+    var swiper = new Swiper('.swiper-container-dt', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        slidesPerGroup: 3,
+        autoplay:true,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        pagination: {
+            el: '.swiper-pagination-dt',
+            clickable: true,
+        }
+    });
+    $('select').niceSelect();
+</script>
+<script>
+    function FromSubmit(){
+        var username=document.getElementById("name").value,tel=document.getElementById("tel").value,email=document.getElementById("email").value,content=document.getElementById("content").value,qq=document.getElementById("qq").value,channel=document.getElementById("selectops").value,ziops=document.getElementById("ziops").value,utm_source  ="60",utm_term = "在线留言",urlesp=window.location.href;
+        if (tel == "") {alert("请填写手机号码");return false;}
+        if(!(/^1\d{10}$/.test(tel))){alert("不是完整的11位手机号或者正确的手机号!");return false;}
+        var api = "/api.php?op=messbook&name=" + username + "&tel=" + tel+ "&email=" + email +"&qq=" +qq+ "&content=" + content+ "&channel=" + channel+ "&ziops=" + ziops + "&url=" + escape(urlesp) + "&utm_source=" + utm_source + "&utm_term=" + utm_term + "&prevurl="+ document.referrer;
+        $.ajax({
+            dataType: "json",
+            url: api,
+            success: function (data) {
+                console.log(data,'aa');
+                if (data.res == true) {
+                    alert("留言成功！我们的客服经理将会尽快和您联系！");
+                    $("input[type='text']").val("");
+                    $("#content").val("");
+                } else {
+                    alert("留言不成功！请重新留言！");
+                }
+            }, error: function () {
+                alert("服务器正忙,请稍后再试！")
+            }
+        });
+    }
+</script>
+</body>
+{pc:block pos="pc_kf"}{/pc}
+{pc:block pos="otherjs"}{/pc}
+</html>

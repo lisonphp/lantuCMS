@@ -1,0 +1,19 @@
+{template "wap","header"}
+<div class="containe ">
+  <div class="contit">
+    <p><img src="/statics/wap/img/tit3.png" width="60" height="40"><strong>{$cate['catname']} </strong>{$cate['catdir']}</p>
+  </div>
+  <div class="main">
+        <ul class="cplist">
+            {loop $infopage $r}
+            {php $urlk=str_replace(stristr($r['url'],'.',true),'http://m',$r['url']);}
+            <li>
+                <img src="{$r['thumb']}">
+                <p>{$r[title]}</p>
+            </li>
+            {/loop}
+        </ul>
+    </div>
+        <div class="pages_01">{$pages}</div>
+</div>
+{template "wap","footer"}

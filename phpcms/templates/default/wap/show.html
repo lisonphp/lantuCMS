@@ -1,0 +1,42 @@
+{template "wap","header"}
+<div class="containe ">
+  <div class="contit">
+    <p><img src="/statics/wap/img/tit3.png" width="60" height="40"><strong>{$cate['catname']} </strong>{$cate['catdir']}</p>
+  </div>
+    <div class="main ddnr">
+        <h3>{$title}</h3>
+        <span>时间：{$updatetime} 作者{$catid}：{$author}</span>
+        {$content}
+    </div>
+    <div class="main"></div>
+    <div class="main xgnew">
+        <ul>
+            <h3>相关内容</h3>
+            {pc:get sql="select url,title,updatetime from lt_news where catid=$catid order by updatetime desc" num="5" return="infopage"}
+            {loop $infopage $r}
+            {php $urlk=str_replace(stristr($r['url'],'.',true),'http://m',$r['url']);}
+            <li>
+                <span>{date("m-d",$r[updatetime])}</span>
+                <a class="newbt" href="{$urlk}" title="{$r[title]}">
+                    {str_cut($r[title],'48','...')}
+                </a>
+            </li>
+            {/loop}
+            {/pc}
+        </ul>
+    </div>
+
+</div>
+    <style>
+    .collb_ld div div a {
+        color: black;
+    }
+    </style>
+    <div class="collb_ld">
+        <div style="margin: 0px auto 18px ;line-height: 40px;">
+            <div><a href="{$previous_page[url]}">上一篇：{$previous_page[title]}</a> </div>
+            <div><a href="{$next_page[url]}">下一篇：{$next_page[title]}</a> </div>
+        </div>
+    </div>
+    <script language="JavaScript" src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
+{template "wap","footer"}

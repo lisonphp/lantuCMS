@@ -1,0 +1,12 @@
+{template "content","header"}
+<article>
+    {$content}
+</article>
+{template "content","footer"}
+<script>
+    $('.art-nav').on('click','a',function(){
+        $(this).addClass('hover').siblings().removeClass('hover');
+        $('.art-container .container').hide();
+        $('.art-container .container').eq($(this).index()).css('display','flex');
+    })
+</script>

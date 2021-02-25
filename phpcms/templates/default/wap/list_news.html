@@ -1,0 +1,18 @@
+{template "wap","header"}
+
+        <div class="Cons_news">
+            <ul>
+                {loop $infopage $r}
+                {php $urlk=str_replace(stristr($r['url'],'.',true),'http://m',$r['url']);}
+                <div class="yh">
+                    <li>
+                        [NEWS]<a class="title" href="{$urlk}" target="_blank"><b>{str_cut($r[title],'60','...')}</b></a>
+                        <span style="float:right;">[{date("Y-m-d",$r[updatetime])}]</span>
+                    </li>
+                </div>
+                {/loop}
+                <div class="pages_01 pages_01_ul">{$pages}</div>
+            </ul>
+        </div>
+
+{template "wap","footer"}

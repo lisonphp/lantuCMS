@@ -1,0 +1,15 @@
+RewriteEngine on
+RewriteRule ^statics - [L,NC]
+RewriteRule ^uploadfile - [L,NC]
+RewriteRule ^wap - [L,NC]
+#RewriteCond %{HTTP_HOST} ^m.lantu02.com$ [NC]
+#DirectoryIndex index.php index.html
+RewriteCond %{HTTP_HOST} ^m.lantu02.com$ [NC]
+RewriteRule ^([A-Za-z0-9_]+)/([A-Za-z0-9_]+).html$ index.php?m=wap&c=index&a=index&dir=$1&id=$2
+RewriteCond %{HTTP_HOST} ^m.lantu02.com$ [NC]
+RewriteRule ^([A-Za-z0-9_]+)/_([A-Za-z0-9_]+).html index.php?m=wap&c=index&a=index&dir=$1&page=$2
+RewriteCond %{HTTP_HOST} ^m.lantu02.com$ [NC]
+RewriteRule ^([A-Za-z0-9_]+)/ index.php?m=wap&c=index&a=index&dir=$1
+RewriteCond %{HTTP_HOST} ^lantu02.com [NC]
+RewriteRule ^(.*)$ http://www.lantu02.com/$1 [L,R=301]
+ErrorDocument 404 /404.html

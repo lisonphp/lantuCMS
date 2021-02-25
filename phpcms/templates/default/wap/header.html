@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <meta content="fullscreen=yes,preventMove=no" name="ML-Config" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="pragram" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="applicable-device" content="mobile" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    {php $sites = $this->sites}
+    {if $dir}
+    <title>{$SEO[site_title]}-{$sites[name]}</title>
+    <meta name="description" content="{$SEO[description]}"/>
+    <meta name="keywords" content="{$SEO[keyword]}"/>
+    {else}
+        {pc:get sql="select setting from lt_category where catid=35"}
+            {php $setting = string2array($data[0]['setting'])}
+            <title>{$setting[meta_title]}-{$sites[name]}</title>
+            <meta name="keywords" content="{$setting[meta_keywords]}"/>
+            <meta name="description" content="{$setting[meta_description]}"/>            
+        {/pc}
+    {/if}
+<link rel="stylesheet" type="text/css" href="/statics/wap/css/APPcss.css">
+<script type="text/javascript" src="/statics/wap/js/jquery.js"></script>
+<script type="text/javascript" src="/statics/wap/js/MSClass.js"></script>
+<script type="text/javascript" src="/statics/wap/js/ua-parser.js"></script>
+<script type="text/javascript">
+var detector = navigator.userAgent,
+    isAndroid = /Android (\d+\.\d+)/.test(detector),
+    version = parseFloat(RegExp.$1),
+    phoneScale = parseInt(window.screen.width)/640;
+if(isAndroid){
+    if(version>2.3){
+        document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+    }else{
+        document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+    }
+}else{
+    document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+//微信去掉下方刷新栏
+if(navigator.userAgent.indexOf('MicroMessenger') >= 0){
+    document.addEventListener('WeixinJSBridgeReady', function() {
+        //WeixinJSBridge.call('hideToolbar');
+    });
+}
+</script>
+<script>
+$(function(){
+    $(".indexnews li:even").css("background","#ffffff")
+    $(".indexnews li a:even").css("color","#333333")
+})
+</script>
+    <style>
+    .brand ul li{
+        width: 30% !important; 
+    }
+    .pages_01 li a {
+        color: #333333;
+    }
+
+.pages_01_ul {
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center;
+    clear: both;
+}
+.pages_01 a {
+    border: 1px solid #e3e3e3;
+    color: #333;
+    display: inline-block;
+    padding: 0 10px;
+}
+    .pages_01 li{
+        list-style: none;
+        display: inline;
+        padding: 3px 10px;
+    }
+
+    .active {
+        background-color: #eee;
+    }
+    .gy {
+        width: 100%;
+        background: #FFF;
+        float: left;
+        margin-top: 2em;
+    }
+    /*img{
+        display:block;
+        max-width: 100% !important;
+    }*/
+    </style>
+</head>
+<body>
+<script>
+$(function(){
+    $(".menu span").click(function(){
+       
+        $(".nav").css("display","block");
+        $(this).css("display","none");  
+        $(".menu p").css("display","block");        
+    })
+    
+    $(".menu p").click(function(){
+    
+        $(".nav").css("display","none");
+        $(this).css("display","none");  
+        $(".menu span").css("display","block"); 
+    })
+    
+})
+</script>
+<div class="top">
+  <div class="logo"><a href="/"><img src="/statics/wap/img/logo.jpg" width="392" height="66"></a></div>
+  <div class="menu"> <span><a href="javascript:void(0);"><img src="/statics/wap/img/hc_06.png" width="50" height="34"></a></span>
+    <p><a href="javascript:void(0);"><img src="/statics/wap/img/menu2.png" width="50" height="34"></a></p>
+  </div>
+</div>
+<div class="nav">
+  <ul>
+    <li><a href="/">首页</a></li>
+    {pc:content action="category" order="listorder ASC"}
+    {loop $data $k $r}
+        {if $r['catid'] != 35 and $r['catid'] != 37}
+        {php $urlk=str_replace(stristr($r['url'],'.',true),'http://m',$r['url']);}
+        <li><a href="{$urlk}">{$r['catname']}</a></li>
+        {/if}
+    {/loop}
+    {/pc}
+    <li class="hover"><a href="/contact/">在线留言</a></li>
+  </ul>
+</div>
+<div class="appbanner"> 
+  <div class="slider">
+    <ul>
+      <li><img src="/statics/wap/img/banner1.jpg" width="640" height="410"></li>
+      <li><img src="/statics/wap/img/banner2.jpg" width="640" height="410"></li>
+    </ul>
+  </div>
+  <script type="text/javascript" src="/statics/wap/js/yxMobileSlider.js"></script> 
+  <script>
+    $(".slider").yxMobileSlider({width:640,height:410,during:3000})
+  </script> 
+</div>

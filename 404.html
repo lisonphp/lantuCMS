@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>404页面</title>
+<style type="text/css">
+	a{ text-decoration:none;}
+	.wrong{ width:100%; height:auto; overflow:hidden; background-color:#f8f3ed;}
+	.wrong_cont{ width:1024px; height:538px; overflow:hidden; background:url(/images/404.jpg) no-repeat center center; margin:0 auto; position:relative;  }
+	.back{ width:50px; height:20px; font-size:12px; color:#71706c; position:absolute; top:455px; left:468px;}
+	.next{ width:80px; height:20px; font-size:12px; color:#71706c; position:absolute; top:455px; left:540px;}
+	p{    position: absolute;
+    top: 395px;
+    right: 240px;
+    font-size: 22px;
+    font-family:"微软雅黑";
+    color: #595856;}
+	p span{color:red}
+		body{
+		background-color:#444;
+		font-size:14px;
+	}
+	h3{
+		font-size:60px;
+		color:#eee;
+		text-align:center;
+		padding-top:30px;
+		font-weight:normal;
+	}
+
+</style>
+</head>
+
+<body>
+<h3>404，您请求的文件不存在!</h3>
+
+<div class="wrong">
+	<div class="wrong_cont">
+		<p><span id="time">5</span>S后返回上一页</p>
+    	<a class="back" href="/index.php">返回首页</a>
+        <a class="next" href="javascript:;" onClick="javascript:history.back(-1);">返回上一页</a>
+    </div>
+</div>
+		<script type="text/javascript">
+		var i=5,myInterval;
+		function time(){
+			i--;
+			document.getElementById("time").innerHTML=i;
+			if(i==0){
+				window.history.go(-1);
+				clearInterval(myInterval);
+			}
+		}
+		myInterval = setInterval(time,1000);
+	</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+
+<div class="containe appmessage">
+  <div class="appmessage1">
+    <p><strong>温馨提示</strong> 对项目留言即可获得项目详细资料请立即留言！</p>
+    <span>留言成功后，负责人将会在24小时之内答复您，使您对此项目获得更多了解。</span>
+    <p class="mewk">把握机会，抢占商机，给您感兴趣的项目留言，是走向成功的第一步！</p>
+<ul class="mes">
+        <li>
+          <p>姓名 ：</p>
+          <input id="name" name="username" type="text" placeholder="请输入您的姓名">
+        </li>
+        <li>
+          <p>电话 ：</p>
+          <input id="tel" name="tel" type="text" placeholder="请输入您的电话">
+        </li>
+        <!-- <li>
+          <p>地址 ：</p>
+          <input name="address" type="text" placeholder="请输入您的地址">
+        </li>
+        <li>
+          <p>邮箱 ：</p>
+          <input name="email" type="text" placeholder="请输入您的邮箱">
+        </li> -->
+        <li class="ly">
+          <p>留言 ：</p>
+          <textarea id="content" name="content" cols="" rows="" placeholder="请输入您的留言"></textarea>
+        </li>
+        </li>
+      </ul>
+      <input type="submit" name="button" class="button submitBtn">
+  </div>
+</div>
+<div class="appfooter">
+  <p>{pc:block pos="copyright"}{/pc}</p>
+</div>
+<footer>
+  <div class="foot">
+    <ul>
+      <li><a href='tel:{pc:block pos="wapphone"}{/pc}' rel="nofollow">
+      <img src="/statics/wap/img/tubiao1.png" width="160" height="39"><br>
+        电话咨询</a></li>
+      <li><a href='{pc:block pos="online"}{/pc}' rel="nofollow">
+      <img src="/statics/wap/img/tubiao4.png" width="160" height="39"><br>
+        索取资料</a></li>
+    </ul>
+  </div>
+</footer>
+<div style="display:none;"></div>
+<script>
+$(function () {
+
+    var host = window.location.host;
+    var utmBrand = '';
+    var talkId = '';
+
+    $.ajax({
+        dataType: "jsonp",
+        url: "http://mess.gzlantern.cn/index.php/Admin/port/hangye?url=" + host + "&callback",
+        success: function (data) {
+            if (data.status == "1") {
+                utmBrand = data.product;
+                talkId = data.daihao;
+            }
+        }, error: function () {
+            console.log("服务器正忙,请稍后再试！");
+        }
+    });
+
+    $('.submitBtn').click(function (e) {
+        e.preventDefault();
+        var form = $(this).parent("form");
+        var username = $('#name').val();
+        var tel = $('#tel').val();
+        var content = $('#content').val();
+        var qq = '';
+
+        if($(form).find('#content').length>0){
+            content =  $(form).find('#content').val();
+        }
+
+        if($(form).find('#content').length>0){
+            qq =  $(form).find('#qq').val();
+        }
+
+        submitForm(utmBrand, talkId,username,tel,content,qq);
+    });
+
+});
+
+function submitForm(utmBrand, talkId,username,tell,content,qq) {
+
+    var api = "http://mess.gzlantern.cn/index.php/Admin/Book/add";
+    var selfUrl = escape(window.location.href);
+    var utmSource = "60";
+    var utmTerm = "在线留言";
+    var prevUrl = escape(document.referrer);
+
+    if (username == '' || username == null) {
+        alert('请输入姓名');
+        return false;
+    }
+
+    if (!(/^1\d{10}$/.test(tell))) {
+        alert("请填写正确的手机号!");
+        console.log(tell);
+        return false;
+    }
+
+    api = api +'?username='+username+'&tel='+tell+'&qq='+qq+'&content='+content+'&utm_brand='+utmBrand+'&url='+selfUrl+'&utm_source='+utmSource+'&utm_term='+utmTerm+'&prevurl='+prevUrl+'&talk_id='+talkId+'&callback=?';
+    $.ajax({
+        url: api,
+        type: 'post',
+        dataType: 'jsonp',
+        success: function (data) {
+            if (data.res == true) {
+                $('#name').val('');
+                $('#tel').val('');
+                $('#content').val('');
+                alert("留言成功！我们的客服经理将会尽快和您联系！");
+            } else {
+                alert("留言不成功！请重新留言！");
+            }
+        },
+        error: function (data) {
+            alert("服务器正忙,请稍后再试！");
+        }
+    });
+
+
+}
+</script>
+{pc:block pos="wap_kf"}{/pc}
+</body>
+</html>  

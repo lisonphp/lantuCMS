@@ -1,0 +1,74 @@
+{template "wap","header"}
+<!-- 项目介绍介绍 -->
+{if $CATEGORYS[41]['ismenu']}
+<div class="containe appabout">
+{php $urlabout=str_replace(stristr($CATEGORYS[39]['url'],'.',true),'http://m',$CATEGORYS[39]['url']);}
+  <div class="contit"> <span><a href="{$urlabout}"><img src="/statics/wap/img/more.png" width="80" height="40"></a></span>
+    <p><img src="/statics/wap/img/tit1.png" width="60" height="40"><strong>项目介绍 </strong>About us</p>
+  </div>
+  <div class="main">
+    {pc:get sql="select content from lt_page where catid=36" return="infopage"}
+    {loop $infopage $r}
+    {$r[content]}
+    {/loop}
+    {/pc}
+  </div>
+</div>
+{/if}
+
+<!-- 产品展示 -->
+{if $CATEGORYS[17]['ismenu']}
+<div class="containe appcp">
+{php $urlstore=str_replace(stristr($CATEGORYS[27]['url'],'.',true),'http://m',$CATEGORYS[27]['url']);}
+  <div class="contit"> <span><a href="{$urlstore}"><img src="/statics/wap/img/more1.png" width="80" height="40"></a></span>
+    <p><img src="/statics/wap/img/tit2.png" width="60" height="40"><strong>品牌展示 </strong>Show</p>
+  </div>
+  <div class="main" >
+    <div id="marquee1" class="marqueeleft">
+      <div style="width:8000px;">
+        <ul id="marquee1_1">
+            {pc:get sql="select thumb from lt_picture where catid=27 and status=99" order="id desc" num="6" return="infopage"}
+            {loop $infopage $r}
+            <li><img src="{$r[thumb]}" width="254" height="254"></a></li>
+            {/loop}
+            {/pc}
+        </ul>
+        <ul id="marquee1_2">
+        </ul>
+      </div>
+      <script type="text/javascript">marqueeStart(1, "left");</script> 
+    </div>
+  </div>
+</div>
+{/if}
+<div class="containe jm">
+  <div><img src="/statics/wap/img/jm_06.jpg" width="356" height="437"></div>
+  {php $urljoinus=str_replace(stristr($CATEGORYS[28]['url'],'.',true),'http://m',$CATEGORYS[28]['url']);}
+  <div style="width:284px;"><a href="{$urljoinus}"><img src="/statics/wap/img/jm.gif" width="284" height="199"></a>
+  {php $urlschool=str_replace(stristr($CATEGORYS[37]['url'],'.',true),'http://m',$CATEGORYS[37]['url']);}
+  <a href="{$urlschool}"><img src="/statics/wap/img/jm1.gif" width="284" height="238"></a></div>
+</div>
+
+<!-- 新闻中心 -->
+{if $CATEGORYS[30]['ismenu']}
+<div class="containe ddnew">
+  <div class="contit">
+    <p><img src="/statics/wap/img/tit1.png" width="60" height="40"><strong>新闻中心 </strong>News</p>
+  </div>
+  <div class="main">
+    <ul>
+    {pc:get sql="select id,updatetime,title,url from lt_news where catid=30 and status=99 order by id desc" return="infopage" num="6"}
+    {loop $infopage $r}
+    {php $urlk=str_replace(stristr($r['url'],'.',true),'http://m',$r['url']);}
+        <li>
+            <span>{date("m-d",$r[updatetime])}</span><a class="newbt" href="{$urlk}" target="_blank">{str_cut($r[title],'48','...')}</a>
+        </li>
+    {/loop}
+    {/pc}
+        </ul>
+        {php $urlnews=str_replace(stristr($CATEGORYS[30]['url'],'.',true),'http://m',$CATEGORYS[30]['url']);}
+    <div class="more"><a href="{$urlnews}"  target="_blank"><img src="/statics/wap/img/more2.png" width="45" height="40"></a></div>
+  </div>
+</div>
+{/if}
+{template "wap","footer"}

@@ -1,0 +1,23 @@
+{template "wap","header"}
+<div class="containe ">
+  <div class="contit">
+    <p><img src="/statics/wap/img/tit3.png" width="60" height="40"><strong>{$cate['catname']} </strong>{$cate['catdir']}</p>
+  </div>
+  <div class="main ddnew">
+        <ul>
+            {loop $infopage $r}
+            {php $urlk=str_replace(stristr($r['url'],'.',true),'http://m',$r['url']);}
+            <li>
+                <span>{$updatetime}</span>
+                <a class="newbt" href="{$urlk}" title="{$r[title]}">
+                    {$r[title]}
+                </a>
+                <p class="nw1"></p>
+                <p class="nw2"><a href="{$urlk}">MORE></a> 作者：{$r[author]}</p>
+            </li>
+            {/loop}
+        </ul>
+    </div>
+        <div class="pages_01 pages_01_ul">{$pages}</div>
+</div>
+{template "wap","footer"}

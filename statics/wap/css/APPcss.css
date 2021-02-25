@@ -1,0 +1,107 @@
+@charset "gb2312";
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,img,form,p{padding:0; margin:0; font-weight:normal} 
+img{margin:0;padding:0;}
+table,td,tr,th{font-size:16px}
+li{list-style-type:none;list-style:none; }
+ol,ul {list-style:none;}
+h1,h2,h3,h4,h5,h6 {font-weight:normal; font-style:normal; font-size:16px}
+address,cite,code,em,th {font-weight:normal; font-style:normal;}
+
+body{width:640px; max-width: 640px; min-width: 640px; margin: 0 auto; font-family:"微软雅黑"; color:#333333;background:#ebebeb; font-size:16px}
+a {text-decoration:none; blr:e-xpression(this.onFocus=this.blur()); color:#757575; outline-style:none;}
+a:hover { text-decoration:none;}
+a:focus { -moz-outline-style: none;} 
+/*************************************/
+.top{height: 100px;background-color: #fff;width: 640px;position: fixed;top: 0;z-index: 9;}
+.logo{width: 392px;height: 66px;float: left;padding-top: 17px;padding-left: 40px;}
+.menu{width: 50px;height: 50px;float: right;text-align: right;padding-top: 30px;position: relative;padding-right: 40px;}
+.menu span{ display:block;}
+.menu p{position: absolute;right: 40px;top: 30px;display: none;}
+.appbanner{width: 640px;height: 410px;margin: 0 auto;padding-top: 100px;background-color: #054010;}
+.slider{display:none}/*用于获取更加体验*/
+.focus span{width:20px;height:20px;margin-right:10px;border-radius:50%;background:#ffffff;font-size:0}
+.focus span.current{background:#000000}
+.nav{ width:640px; height:100%; position:absolute; top:92px; background:#fff; z-index:999; position: fixed; display:none;}
+.nav ul{ width:640px; overflow:hidden; margin:0 auto;border-bottom:1px solid #054010;}
+.nav ul li{ width:640px; height:80px; float:left; border-top:1px solid #054010;}
+.nav ul li a{ width:640px; height:80px; float:left; text-align:center; font-size:24px; color:#054010; line-height:80px;}
+.hover{background:#054010}
+.hover a{ color:#fff!important}
+.containe{width:640px; float:left; background:#fff; overflow:hidden;}
+
+.appabout{ height:370px; background:url(../img/about.jpg)}
+.main{width:560px; margin:0px 40px; float:left}
+.contit{ height:40px; width:560px; margin:25px 40px; float:left}
+.contit span{ float:right}
+.appabout .contit p{ color:#054010; line-height:40px; font-size:16px;}
+.contit p strong{ font-size:24px}
+.appabout .main p{ font-size:16px; line-height:32px; text-indent:2em; color:#363636}
+.appcp{ height:400px; background:#053f10}
+.appcp .contit p{ color:#fff; line-height:40px; font-size:16px;}
+.marqueeleft{ overflow:hidden; margin-top:20px}
+.marqueeleft ul li{float:left;}
+.marqueeleft ul li img{ border:3px solid #fff; margin-right:20px}
+.jm{ height:437px;}
+.jm div{ float:left}
+.ddnew .contit p{ color:#191919; line-height:40px; font-size:16px; text-align:center}
+.ddnew li{ padding:2px 0; border-top:1px solid #a8a8a8}
+.ddnew ul{  border-bottom:1px solid #a8a8a8}
+.ddnew li span{float: right;display: block;width: 100px;height: 40px;background: #000;line-height: 40px;font-size: 16px;color: #fff;text-align: center;border-radius: 20px}
+.ddnew li a{  line-height:40px; font-size:16px; color:#fff;  overflow:hidden; }
+.ddnew .more{ text-align:center; padding-top:20px; padding-bottom:20px}
+.appmessage{ background:#053f10; height:490px}
+.appmessage1{ width:560px; margin:40px auto 0px; overflow:hidden}
+.appmessage1 p{font-size:16px; line-height:32px;color: #fff;}
+.appmessage1 span{font-size:14px; line-height:32px; color: #fb4005;}
+.appmessage1 p strong{ font-size:32px; color: #fb4005;}
+.mewk{ display:block; text-align:center; border:1px solid #fff; margin-bottom:25px}
+.appmessage2{ width:560px; margin:0px auto 35px; overflow:hidden}
+.appmessage3{ background:#fff; height:490px}
+.appmessage3 p{ color:#000}
+.appmessage3 .mewk{  border:1px solid #CCC }
+
+.mes li { float:left; display:block; width:50%}
+.mes li p{ display: block; float:left; width:60px; font-size:14px; line-height:33px;}
+.mes li input{ display: block; width:198px; border:1px solid #000; float:left; background:#FFF; height:33px; margin-bottom:25px; text-indent:1em}
+.mes .ly{ width:100%}
+.mes .ly textarea{ width:458px; height:80px;display: block; border:1px solid #000; float:left; background:#FFF;  margin-bottom:25px;  line-height:30px; padding:10px 1em}
+.button{ display:block; width:135px; height:40px; background:url(../img/tj.jpg); border:0; margin:0 auto;  text-indent:100em}
+.appfooter{width: 640px;background: #001f06;overflow: hidden;height: 60px;margin-bottom: 100px; float:left}
+.appfooter p{ line-height:60px; text-align:center; color:#fff }
+footer{height:100px;text-align:center;width: 640px;position:fixed;bottom:0;z-index:9; float:left}
+.foot{width:640px;height:100px;}
+.foot li{ float:left}
+.foot li a{ display:block; width:318px; height:82px; border:1px solid #001f06; background:#003309; padding-top:16px; color:#fff}
+
+.newbt{display:block; width:330px; height:40px; background: url(../img/li.png) no-repeat 15px 17px #053f10;border-radius:20px;padding-left:30px;}
+.ddnew .nw1{ text-indent:2em; font-size:14px; line-height:26px; color:#707070; height:104px; display:block; overflow:hidden}
+.ddnew .nw2{ font-size:14px; line-height:26px; color:#053f10}
+.ddnew .nw2 a{  float:right;font-size:16px; line-height:26px; color:#053f10}
+
+.ddnr{ border-top:1px solid #c2c2c2; padding-top:20px;}
+.ddnr h3, .ddnr span{ text-align:center; color:#053f10; display:block}
+.ddnr h3{ font-size:24px; font-weight:bold; line-height:30px}
+.ddnr span{ font-size:12px;line-height:30px}
+.ddnr p{ text-indent:2em; font-size:16px; line-height:32px; color:#313131}
+.ddnr img{ display:block; margin:10px auto}
+
+.sxpage ,.xgnew{ border-top:1px dashed #CCC; line-height:32px; padding:10px 0}
+.sxpage li{ background:url(../img/sxpage.png) no-repeat 0 12px; text-indent:3em}
+.sxpage li a{ color:#000}
+
+
+.xgnew h3{ font-size:20px; font-weight:bold; line-height:32px; color:#053f10}
+.xgnew li span{float: right;display: block;width: 100px;height: 40px;background: #000;line-height: 40px;font-size: 16px;color: #fff;text-align: center;border-radius: 20px}
+.xgnew li{ padding:2px 0; }
+.xgnew li a{  line-height:40px; font-size:16px; color:#fff;  overflow:hidden; }
+
+
+
+.btn_pages{ width:560px; float:left; height:40px; display:block;text-align:center; padding:20px 0}
+.btn {display: inline-block;padding: 6px 12px;font-size: 12px;line-height:20px;text-align: center;cursor: pointer;border: 1px solid #c0c0c0;border-radius: 4px;color: #333;}
+
+.cplist{ border:none !important}
+.cplist li{ width:50%; text-align:center; float:left; border:0}
+.cplist li img{ display:block; width:254px; border:3px solid #fff; height:254px;}
+.cplist li p{ color:#333; line-height:32px}

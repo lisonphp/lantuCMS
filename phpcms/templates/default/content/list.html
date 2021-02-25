@@ -1,0 +1,29 @@
+
+{template "content","header"}
+<article>
+    <nav class="art-nav">
+        <a {if $catid =='65'}class="hover"{/if} href="{$CATEGORYS[65]['url']}"><span>{$CATEGORYS[65]['catname']}</span></a>
+        <a {if $catid =='66'}class="hover"{/if} href="{$CATEGORYS[66]['url']}"><span>{$CATEGORYS[66]['catname']}</span></a>
+    </nav>
+    <section class="news-main">
+        <h3 class="sec-title wow slideInUp">{$CATEGORYS[$catid]['catname']}</h3>
+        <div class="news-main-list">
+            {pc:get sql="select url,thumb,title,updatetime,description,newstype from lt_news where catid=$catid and status=99 order by id desc" num="6" return="infopage" page="$page"}
+            {loop $infopage $r}
+            <a href="{$r[url]}" class="item item1 wow slideInUp">
+                <div class="img"><img src="{$r[thumb]}" alt="{str_cut($r[title],'60','...')}" srcset=""></div>
+                <div class="txt">
+                    <h3 class="news-ti">{$r[title]}</h3>
+                    <p class="news-ms"><span>{$r[newstype]}</span>{date("Y-m-d",$r[updatetime])}</p>
+                    <p class="news-jj">{str_cut($r[description],'210','...')}</p>
+                </div>
+            </a>
+            {/loop}
+            {/pc}
+            <div class="pages_02 pages_01_ul page">
+                <div class="pages_01">{$pages}</div>
+            </div>
+        </div>
+    </section>
+</article>     
+{template "content","footer"}
